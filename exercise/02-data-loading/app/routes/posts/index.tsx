@@ -1,29 +1,14 @@
 import { Link, useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/node";
-import { prisma } from '~/db.server';
-
-async function getPosts() {
-  return prisma.post.findMany();
-
-  // raw posts
-  // 
-  // return [
-  //   {
-  //     slug: "my-first-post",
-  //     title: "My First Post",
-  //   },
-  //   {
-  //     slug: "90s-mixtape",
-  //     title: "A Mixtape I Made Just For You",
-  //   },
-  // ]
-}
+import { getPostListItems } from "~/models/post.server";
 
 export async function loader() {
-  const posts = await getPosts();
+  const posts = await getPostListItems();
 
-  // returns only the needed properties on `posts`
-  return json({ posts: posts.map(p => ({ slug: p.slug, title: p.title })) });
+  return json({ posts });
+
+  // returns only the needed properties on `posts`, if prisma didn't already filter
+  // return json({ posts: posts.map(p => ({ slug: p.slug, title: p.title })) });
 
   // does the same thing as this
   // 
