@@ -4,7 +4,15 @@ import { useLoaderData } from "@remix-run/react";
 import { getPost } from "~/models/post.server";
 
 export async function loader({ params }: LoaderArgs) {
+  if (!params.slug) {
+    throw new Error("Missing slug")
+  }
+
   const post = await getPost(params.slug);
+
+  if (!post) {
+    throw new Error("Post not found")
+  }
 
   return json({ post });
 }
@@ -14,7 +22,9 @@ export default function PostRoute() {
 
   return (
     <main className="mx-auto max-w-4xl">
-      <h1 className="my-6 border-b-2 text-center text-3xl">{data.post.title}</h1>
+      <h1 className="my-6 border-b-2 text-center text-3xl">
+        {data.post.title}
+      </h1>
     </main>
   );
 }
