@@ -3,7 +3,8 @@ name: ✅ Validate
 on:
   push:
     branches:
-      - main
+    - suppress-gh-action
+#       - main
 
 jobs:
   validate:
