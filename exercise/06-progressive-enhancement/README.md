@@ -2,6 +2,8 @@
 
 ## 📝 Notes
 
+Remix: Not enabled by JS, enhanced by JS
+
 ## 🤓 Background
 
 I've got a surprise for you... Did you know that we can completely disable
