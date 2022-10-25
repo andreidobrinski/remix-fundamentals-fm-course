@@ -13,7 +13,11 @@ export default function Posts() {
   return (
     <main>
       <h1>Posts</h1>
-      <Link to="admin" className="text-red-600 underline">
+      <Link
+        to="admin"
+        prefetch="intent"
+        className="text-red-600 underline"
+      >
         Admin
       </Link>
       <ul>
