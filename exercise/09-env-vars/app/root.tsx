@@ -12,6 +12,7 @@ import {
 
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import { getUser } from "./session.server";
+import { getEnv } from "./env.server";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
@@ -30,7 +31,7 @@ export async function loader({ request }: LoaderArgs) {
     // ENV: {
       // ADMIN_EMAIL: process.env.ADMIN_EMAIL
     // }
-    ENV: global.ENV
+    ENV: getEnv(),
   });
 }
 
