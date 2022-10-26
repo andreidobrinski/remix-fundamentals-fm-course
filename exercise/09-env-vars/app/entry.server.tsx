@@ -3,6 +3,9 @@ import { RemixServer } from "@remix-run/react";
 import { renderToString } from "react-dom/server";
 
 // 🐨 set global.ENV to getEnv() from ./env.server
+global.ENV = {
+  ADMIN_EMAIL: process.env.ADMIN_EMAIL
+};
 
 export default function handleRequest(
   request: Request,
