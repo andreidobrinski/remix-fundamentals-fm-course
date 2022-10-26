@@ -7,7 +7,13 @@ export async function getPostListItems() {
 }
 
 export async function getPost(slug: string) {
-  return prisma.post.findUnique({ where: { slug } });
+  const post = await prisma.post.findUnique({ where: { slug } });
+  // optionally, can add the throw in the model
+  // not preferred: best to keep models as regular JS, no semantically-meaningful framework code
+  if (!post) {
+    throw new Response('not found', { status: 404 });
+  }
+  return post;
 }
 
 export async function createPost(
