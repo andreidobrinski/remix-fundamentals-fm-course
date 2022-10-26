@@ -27,9 +27,10 @@ export async function loader({ request }: LoaderArgs) {
   return json({
     user: await getUser(request),
     // 🐨 add ENV to this object and assign it to getEnv() from './env.server'
-    ENV: {
-      ADMIN_EMAIL: process.env.ADMIN_EMAIL
-    }
+    // ENV: {
+      // ADMIN_EMAIL: process.env.ADMIN_EMAIL
+    // }
+    ENV: global.ENV
   });
 }
 
